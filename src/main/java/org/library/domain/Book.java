@@ -9,6 +9,11 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@NamedQuery(
+        name = "Book.retrieveBookWithTitle",
+        query = "FROM Book WHERE title like :TITLE")
+
 @Setter
 @NoArgsConstructor
 @Entity
@@ -29,7 +34,7 @@ public class Book {
 
     @Id
     @GeneratedValue
-    @Column(name = "ID",unique = true)
+    @Column(name = "ID", unique = true)
     @NotNull
     public int getId() {
         return id;

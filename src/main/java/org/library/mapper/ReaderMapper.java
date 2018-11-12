@@ -4,6 +4,7 @@ import org.library.domain.Reader;
 import org.library.domain.dto.ReaderDto;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +19,7 @@ public class ReaderMapper {
                 reader.getDate());
     }
 
-    public List<ReaderDto> mapReaderListToReaderDtoList(List<Reader> readers) {
+    public List<ReaderDto> mapReaderListToReaderListDto(List<Reader> readers) {
 
         return readers.stream()
                 .map(reader -> new ReaderDto(
@@ -29,7 +30,10 @@ public class ReaderMapper {
                 .collect(Collectors.toList());
     }
 
-    public void mapReaderDtoToReader(ReaderDto readerDto) {
-
+    public Reader mapReaderDtoToReader(ReaderDto readerDto) {
+        return new Reader(
+                readerDto.getName(),
+                readerDto.getLastName(),
+                new Date());
     }
 }

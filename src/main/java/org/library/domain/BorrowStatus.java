@@ -2,6 +2,6 @@ package org.library.domain;
 
 public enum  BorrowStatus {
 
-    AVAILIABLE,NOT_AVAILIABLE
+    AVAILABLE, NOT_AVAILABLE
 
 }

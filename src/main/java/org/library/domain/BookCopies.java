@@ -12,6 +12,15 @@ public class BookCopies {
     private BorrowStatus status;
     private Book book;
 
+
+    public BookCopies(BorrowStatus status, Book book) {
+        this.status = status;
+        this.book = book;
+    }
+
+    public BookCopies() {
+    }
+
     @Id
     @GeneratedValue
     @Column(name = "ID",unique = true)
@@ -26,7 +35,7 @@ public class BookCopies {
     }
 
     @ManyToOne
-    @JoinColumn(name = "TITLE_ID")
+    @JoinColumn(name = "BOOK_ID")
     public Book getBook() {
         return book;
     }

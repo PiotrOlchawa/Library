@@ -13,10 +13,10 @@ public class Reader {
     private String lastName;
     private Date date;
 
-    public Reader(String name, String lastName) {
+    public Reader(String name, String lastName, Date date) {
         this.name = name;
         this.lastName = lastName;
-        this.date = new Date();
+        this.date = date;
     }
 
     public Reader() {

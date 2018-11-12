@@ -12,12 +12,12 @@ import java.util.Date;
 @Entity
 @Table(name = "BORROWED_COPY")
 public class BorrowedCopy {
-    private BookCopies bookCopies;
 
-    private Reader reader;
+    private int id;
+    private BookCopies bookCopiesId;
+    private Reader readerId;
     private Date borrowStart;
     private Date borrowEnd;
-    private int id;
 
     public BorrowedCopy(Date borrowStart, Date borrowEnd) {
         this.borrowStart = borrowStart;
@@ -26,22 +26,24 @@ public class BorrowedCopy {
 
     @Id
     @GeneratedValue
-    @Column(name = "ID",unique = true)
+    @Column(name = "ID", unique = true)
     @NotNull
     public int getId() {
         return id;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "TITLE_COPIES_ID")
-    public BookCopies getBookCopies() {
-        return bookCopies;
+    @OneToOne(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
+    @JoinColumn(name = "BOOK_COPIES_ID")
+    public BookCopies getBookCopiesId() {
+        return bookCopiesId;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
     @JoinColumn(name = "READER_ID")
-    public Reader getReader() {
-        return reader;
+    public Reader getReaderId() {
+        return readerId;
     }
 
     @Column(name = "BORROW_START")
