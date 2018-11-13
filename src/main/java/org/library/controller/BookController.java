@@ -22,11 +22,6 @@ public class BookController {
         return bookService.getBooks();
     }
 
-    @RequestMapping(method = RequestMethod.GET,value = "/bookCopies/{titleLike}")
-    public List<BookWithTitleCopies> getBookWithSpecifiedTitle(@PathVariable String titleLike) {
-        return bookService.getBookWithTitle(titleLike);
-    }
-
     @RequestMapping(method = RequestMethod.GET, value = "/{bookId}")
     public BookDto getBook(@PathVariable Integer bookId) {
         return bookService.getBook(bookId);

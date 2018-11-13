@@ -2,6 +2,7 @@ package org.library.domain.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.library.domain.BookCopies;
 import org.library.domain.Reader;
 
 import java.util.Date;
@@ -10,9 +11,10 @@ import java.util.Date;
 @Getter
 public class BorrowedCopyDto {
 
+    private int id;
+    private BookCopies bookCopiesId;
     private Reader readerId;
     private Date borrowStart;
     private Date borrowEnd;
-    private int id;
 
 }

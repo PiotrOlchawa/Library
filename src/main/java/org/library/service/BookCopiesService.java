@@ -17,8 +17,4 @@ public class BookCopiesService {
         bookCopies.setStatus(bookCopiesDto.getStatus());
         bookCopiesDao.save(bookCopies);
     }
-
-
-
-
 }

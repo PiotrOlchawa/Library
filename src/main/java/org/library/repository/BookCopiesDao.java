@@ -1,6 +1,8 @@
 package org.library.repository;
 
+import org.library.domain.Book;
 import org.library.domain.BookCopies;
+import org.library.domain.BorrowStatus;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +19,10 @@ public interface BookCopiesDao extends CrudRepository<BookCopies, Integer> {
     @Override
     BookCopies save(BookCopies bookCopies);
 
-    BookCopies findById(Integer bookId);
+    BookCopies findById(Integer bookCopiesId);
+
+    List<BookCopies> findByBook(Book book);
+
+    BookCopies findByStatusAndAndBook(BorrowStatus borrowStatus, Book book);
 
 }

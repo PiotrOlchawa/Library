@@ -1,9 +1,13 @@
 package org.library.controller;
 
+import org.library.domain.BookWithTitleCopies;
 import org.library.domain.dto.BookCopiesDto;
 import org.library.service.BookCopiesService;
+import org.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/bookcopies")
@@ -11,10 +15,18 @@ public class BookCopiesController {
 
     @Autowired
     BookCopiesService bookCopiesService;
+    @Autowired
+    BookService bookService;
 
     @RequestMapping(method = RequestMethod.PUT)
     void changeStatus(@RequestBody BookCopiesDto bookCopiesDto) {
         bookCopiesService.changeBookStatus(bookCopiesDto);
+    }
+
+
+    @RequestMapping(method = RequestMethod.GET,value = "/bookCopies/{titleLike}")
+    public List<BookWithTitleCopies> getBookWithSpecifiedTitle(@PathVariable String titleLike) {
+        return bookService.getBookWithTitle(titleLike);
     }
 
 }

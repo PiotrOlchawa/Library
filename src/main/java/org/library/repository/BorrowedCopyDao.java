@@ -1,7 +1,9 @@
 package org.library.repository;
 
 import org.library.domain.Book;
+import org.library.domain.BookCopies;
 import org.library.domain.BorrowedCopy;
+import org.library.domain.Reader;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,5 +19,7 @@ public interface BorrowedCopyDao extends CrudRepository<BorrowedCopy,Integer> {
 
     @Override
     BorrowedCopy save(BorrowedCopy borrowedCopy);
+
+    List<BorrowedCopy> findByReaderAndBookCopies(Reader reader,BookCopies bookCopies);
 
 }

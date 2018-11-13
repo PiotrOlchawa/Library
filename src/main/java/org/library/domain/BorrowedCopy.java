@@ -1,5 +1,6 @@
 package org.library.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -14,36 +15,35 @@ import java.util.Date;
 public class BorrowedCopy {
 
     private int id;
-    private BookCopies bookCopiesId;
-    private Reader readerId;
     private Date borrowStart;
     private Date borrowEnd;
+    private BookCopies bookCopies;
+    private Reader reader;
 
-    public BorrowedCopy(Date borrowStart, Date borrowEnd) {
+    public BorrowedCopy(Date borrowStart, BookCopies bookCopies, Reader reader) {
         this.borrowStart = borrowStart;
-        this.borrowEnd = borrowEnd;
+        this.bookCopies = bookCopies;
+        this.reader = reader;
     }
 
     @Id
     @GeneratedValue
-    @Column(name = "ID", unique = true)
+    @Column(name = "ID",unique = true)
     @NotNull
     public int getId() {
         return id;
     }
 
-    @OneToOne(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "BOOK_COPIES_ID")
-    public BookCopies getBookCopiesId() {
-        return bookCopiesId;
+    public BookCopies getBookCopies() {
+        return bookCopies;
     }
 
-    @OneToOne(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "READER_ID")
-    public Reader getReaderId() {
-        return readerId;
+    public Reader getReader() {
+        return reader;
     }
 
     @Column(name = "BORROW_START")
