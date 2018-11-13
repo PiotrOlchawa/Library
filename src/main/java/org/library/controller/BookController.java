@@ -28,18 +28,12 @@ public class BookController {
     }
 
     @RequestMapping(
-            method = RequestMethod.POST, value = "addBook",
+            method = RequestMethod.POST,
             consumes = APPLICATION_JSON_VALUE)
     public void saveBook(@RequestBody BookDto bookDto) {
         bookService.saveBook(bookDto);
     }
 
-    @RequestMapping(
-            method = RequestMethod.POST, value = "/addCopy/{bookId}",
-            consumes = APPLICATION_JSON_VALUE)
-    public void saveBook(@PathVariable Integer bookId) {
-        bookService.addBookCopyToBook(bookId);
-    }
 
 
 }
