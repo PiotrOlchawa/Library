@@ -23,6 +23,6 @@ public interface BookCopiesDao extends CrudRepository<BookCopies, Integer> {
 
     List<BookCopies> findByBook(Book book);
 
-    BookCopies findByStatusAndAndBook(BorrowStatus borrowStatus, Book book);
+    BookCopies findByStatusAndBook(BorrowStatus borrowStatus, Book book);
 
 }

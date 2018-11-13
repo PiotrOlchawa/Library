@@ -50,7 +50,7 @@ public class BorrowedCopyService {
         setBook(bookId);
         setReader(readerId);
 
-        BookCopies bookCopies = bookCopiesDao.findByStatusAndAndBook(BorrowStatus.BORROWED, book);
+        BookCopies bookCopies = bookCopiesDao.findByStatusAndBook(BorrowStatus.BORROWED, book);
 
         bookCopies.setStatus(BorrowStatus.AVAILABLE);
         bookCopiesDao.save(bookCopies);

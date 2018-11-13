@@ -1,6 +1,5 @@
 package org.library.service;
 
-import org.library.domain.Reader;
 import org.library.domain.dto.ReaderDto;
 import org.library.exception.ReaderNotAvailableException;
 import org.library.mapper.ReaderMapper;
@@ -26,5 +25,4 @@ public class ReaderService {
     public void saveReader(ReaderDto readerDto) {
         readerDao.save(readerMapper.mapReaderDtoToReader(readerDto));
     }
-
 }
