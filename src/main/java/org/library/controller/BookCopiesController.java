@@ -34,7 +34,7 @@ public class BookCopiesController {
             method = RequestMethod.POST, value = "/addCopy/{bookId}",
             consumes = APPLICATION_JSON_VALUE)
     public void addBookCopies(@PathVariable Integer bookId) {
-        bookService.addBookCopyToBook(bookId);
+        bookService.addBookToBookCopies(bookId);
     }
 
 }

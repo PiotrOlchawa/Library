@@ -31,7 +31,7 @@ public class BookService {
         bookDao.save(book);
     }
 
-    public void addBookCopyToBook(Integer bookId) {
+    public void addBookToBookCopies(Integer bookId) {
         Book book = Optional.ofNullable(bookDao.findOne(bookId)).orElseThrow(BookNotAvailableException::new);
         BookCopies bookCopies = new BookCopies(BorrowStatus.AVAILABLE, book);
         bookCopiesDao.save(bookCopies);
@@ -48,7 +48,6 @@ public class BookService {
     }
 
     public List<BookWithTitleCopies> getBookWithTitle(String title) {
-        System.out.println(title);
         List<Book> bookList = bookDao.retrieveBookWithTitle("%" + title + "%");
 
         bookList = bookList.stream()

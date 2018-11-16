@@ -28,12 +28,10 @@ public class BookController {
     }
 
     @RequestMapping(
-            method = RequestMethod.POST,
-            consumes = APPLICATION_JSON_VALUE)
+            method = RequestMethod.POST, consumes = APPLICATION_JSON_VALUE)
     public void saveBook(@RequestBody BookDto bookDto) {
         bookService.saveBook(bookDto);
     }
-
 
 
 }

@@ -9,6 +9,15 @@ public class BookCopiesDto {
     private BorrowStatus status;
     private Book book;
 
+    public BookCopiesDto() {
+    }
+
+    public BookCopiesDto(int id, BorrowStatus status, Book book) {
+        this.id = id;
+        this.status = status;
+        this.book = book;
+    }
+
     public int getId() {
         return id;
     }

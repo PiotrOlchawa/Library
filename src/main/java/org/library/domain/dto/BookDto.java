@@ -10,6 +10,8 @@ public class BookDto {
     private String author;
     private int pubYear;
 
+    public BookDto() {
+    }
 
     public BookDto(int id, String title, String author, int pubYear) {
         this.id = id;

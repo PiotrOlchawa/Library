@@ -15,7 +15,6 @@ import java.util.List;
         query = "FROM Book WHERE title like :TITLE")
 
 @Setter
-@NoArgsConstructor
 @Entity
 @Table(name = "BOOK")
 public class Book {
@@ -25,6 +24,9 @@ public class Book {
     private String author;
     private int pubYear;
     private List<BookCopies> bookCopies = new ArrayList<>();
+
+    public Book() {
+    }
 
     public Book(String title, String author, int pubYear) {
         this.title = title;
