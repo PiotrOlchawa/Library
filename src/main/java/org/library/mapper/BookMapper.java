@@ -3,7 +3,7 @@ package org.library.mapper;
 import org.library.domain.Book;
 import org.library.domain.BookCopies;
 import org.library.domain.BorrowStatus;
-import org.library.domain.dto.BookDto;
+import org.library.domain.BookDto;
 import org.library.domain.BookWithTitleCopies;
 import org.springframework.stereotype.Component;
 
@@ -42,4 +42,6 @@ public class BookMapper {
                         book.getBookCopies().size()))
                 .collect(Collectors.toList());
     }
+
+
 }

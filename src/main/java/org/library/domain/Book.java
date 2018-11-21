@@ -1,20 +1,14 @@
 package org.library.domain;
 
-
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @NamedQuery(
         name = "Book.retrieveBookWithTitle",
         query = "FROM Book WHERE title like :TITLE")
 
-@Setter
 @Entity
 @Table(name = "BOOK")
 public class Book {
@@ -68,5 +62,25 @@ public class Book {
     )
     public List<BookCopies> getBookCopies() {
         return bookCopies;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setPubYear(int pubYear) {
+        this.pubYear = pubYear;
+    }
+
+    public void setBookCopies(List<BookCopies> bookCopies) {
+        this.bookCopies = bookCopies;
     }
 }

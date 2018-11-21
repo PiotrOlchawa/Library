@@ -1,7 +1,4 @@
-package org.library.domain.dto;
-
-import org.library.domain.Book;
-import org.library.domain.BorrowStatus;
+package org.library.domain;
 
 public class BookCopiesDto {
 

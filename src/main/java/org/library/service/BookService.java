@@ -3,7 +3,7 @@ package org.library.service;
 import org.library.domain.Book;
 import org.library.domain.BookCopies;
 import org.library.domain.BorrowStatus;
-import org.library.domain.dto.BookDto;
+import org.library.domain.BookDto;
 import org.library.domain.BookWithTitleCopies;
 import org.library.exception.BookNotAvailableException;
 import org.library.mapper.BookMapper;

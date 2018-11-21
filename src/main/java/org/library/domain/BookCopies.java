@@ -1,9 +1,7 @@
 package org.library.domain;
 
-import lombok.Setter;
 import javax.persistence.*;
 
-@Setter
 @Entity
 @Table(name = "BOOK_COPIES")
 public class BookCopies {
@@ -23,7 +21,7 @@ public class BookCopies {
 
     @Id
     @GeneratedValue
-    @Column(name = "ID",unique = true)
+    @Column(name = "ID", unique = true)
     public int getId() {
         return id;
     }
@@ -38,5 +36,17 @@ public class BookCopies {
     @JoinColumn(name = "BOOK_ID")
     public Book getBook() {
         return book;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setStatus(BorrowStatus status) {
+        this.status = status;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 }

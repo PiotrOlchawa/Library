@@ -1,7 +1,4 @@
-package org.library.domain.dto;
-
-import java.util.ArrayList;
-import java.util.List;
+package org.library.domain;
 
 public class BookDto {
 

@@ -1,7 +1,7 @@
 package org.library.controller;
 
 import org.library.domain.BookWithTitleCopies;
-import org.library.domain.dto.BookCopiesDto;
+import org.library.domain.BookCopiesDto;
 import org.library.service.BookCopiesService;
 import org.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +20,13 @@ public class BookCopiesController {
     @Autowired
     BookService bookService;
 
-    @RequestMapping(method = RequestMethod.PUT, value="/changeBookStatus")
-    void changeStatus(@RequestBody BookCopiesDto bookCopiesDto) {
-        bookCopiesService.changeBookStatus(bookCopiesDto);
+    @RequestMapping(method = RequestMethod.PUT, value = "/changeBookStatus")
+    public BookCopiesDto changeStatus(@RequestBody BookCopiesDto bookCopiesDto) {
+        return bookCopiesService.changeBookStatus(bookCopiesDto);
     }
 
-    @RequestMapping(method = RequestMethod.GET,value = "/{titleLike}")
-    public List<BookWithTitleCopies> getBookWithSpecifiedTitle(@PathVariable String titleLike) {
+    @RequestMapping(method = RequestMethod.GET)
+    public List<BookWithTitleCopies> getBookWithSpecifiedTitle(@RequestParam("title") String titleLike) {
         return bookService.getBookWithTitle(titleLike);
     }
 

@@ -1,8 +1,5 @@
 package org.library.domain;
 
-import lombok.Getter;
-
-@Getter
 public class BookWithTitleCopies {
 
     private Integer id;
@@ -13,5 +10,17 @@ public class BookWithTitleCopies {
         this.id = id;
         this.title = title;
         this.copies = copies;
+    }
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public Integer getCopies() {
+        return this.copies;
     }
 }

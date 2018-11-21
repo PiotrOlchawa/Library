@@ -1,7 +1,7 @@
 package org.library.mapper;
 
 import org.library.domain.Reader;
-import org.library.domain.dto.ReaderDto;
+import org.library.domain.ReaderDto;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;

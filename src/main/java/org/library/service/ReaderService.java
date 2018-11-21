@@ -1,6 +1,7 @@
 package org.library.service;
 
-import org.library.domain.dto.ReaderDto;
+import org.library.domain.Reader;
+import org.library.domain.ReaderDto;
 import org.library.exception.ReaderNotAvailableException;
 import org.library.mapper.ReaderMapper;
 import org.library.repository.ReaderDao;
@@ -22,7 +23,8 @@ public class ReaderService {
                 .orElseThrow(ReaderNotAvailableException::new);
     }
 
-    public void saveReader(ReaderDto readerDto) {
-        readerDao.save(readerMapper.mapReaderDtoToReader(readerDto));
+    public ReaderDto saveReader(ReaderDto readerDto) {
+        Reader reader = readerDao.save(readerMapper.mapReaderDtoToReader(readerDto));
+        return readerMapper.mapReaderToReaderDto(reader);
     }
 }

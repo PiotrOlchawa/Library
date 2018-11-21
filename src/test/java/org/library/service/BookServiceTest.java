@@ -7,12 +7,11 @@ import org.library.domain.Book;
 import org.library.domain.BookCopies;
 import org.library.domain.BookWithTitleCopies;
 import org.library.domain.BorrowStatus;
-import org.library.domain.dto.BookDto;
+import org.library.domain.BookDto;
 import org.library.mapper.BookMapper;
 import org.library.repository.BookDao;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;

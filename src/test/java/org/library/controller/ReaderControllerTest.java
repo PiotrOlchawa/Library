@@ -3,8 +3,8 @@ package org.library.controller;
 import com.google.gson.Gson;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.library.domain.BookDto;
-import org.library.service.BookService;
+import org.library.domain.ReaderDto;
+import org.library.service.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -24,55 +25,39 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(BookController.class)
-public class BookControllerTest {
+@WebMvcTest(ReaderController.class)
+public class ReaderControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
     @MockBean
-    BookService bookService;
-
+    ReaderService readerService;
 
     @Test
-    public void getBooks() throws Exception {
+    public void getReaders() throws Exception {
         //Given
-        BookDto book = new BookDto(1,"title","author",2003);
-        List<BookDto> bookDtos = new ArrayList<>();
-        bookDtos.add(book);
+        ReaderDto readerDto = new ReaderDto(1, "title", "author", new Date());
+        List<ReaderDto> readerDtos = new ArrayList<>();
+        readerDtos.add(readerDto);
         //When&Then
-        when(bookService.getBooks()).thenReturn(bookDtos);
-        mockMvc.perform(get("/book").contentType(MediaType.APPLICATION_JSON))
+        when(readerService.getReaders()).thenReturn(readerDtos);
+        mockMvc.perform(get("/reader").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].id", is(1)))
-                .andExpect(jsonPath("$[0].title", is("title")))
-                .andExpect(jsonPath("$[0].author", is("author")))
-                .andExpect(jsonPath("$[0].pubYear", is(2003)));
+                .andExpect(jsonPath("$[0].name", is("title")))
+                .andExpect(jsonPath("$[0].lastName", is("author")));
     }
 
     @Test
-    public void getBook() throws Exception {
+    public void createReader() throws Exception {
         //Given
-        BookDto bookDto = new BookDto(1,"title","author",2003);
-        when(bookService.getBook(1)).thenReturn(bookDto);
-        //When&Then
-        mockMvc.perform(get("/book/1").contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is(200))
-                .andExpect(jsonPath("$.id", is(1)))
-                .andExpect(jsonPath("$.title", is("title")))
-                .andExpect(jsonPath("$.author", is("author")))
-                .andExpect(jsonPath("$.pubYear", is(2003)));
-    }
-
-
-    @Test
-    public void saveBook() throws Exception {
-        //Given
-        BookDto bookDto = new BookDto(100,"title","author",2003);
+        ReaderDto readerDto = new ReaderDto(100, "title", "author", new Date());
         Gson gson = new Gson();
-        String jsonContent = gson.toJson(bookDto);
+        String jsonContent = gson.toJson(readerDto);
+        when(readerService.saveReader(readerDto)).thenReturn(readerDto);
         //When&Then
-        mockMvc.perform(post("/book")
+        mockMvc.perform(post("/reader/createReader")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))

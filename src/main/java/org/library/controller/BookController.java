@@ -1,7 +1,6 @@
 package org.library.controller;
 
-import org.library.domain.dto.BookDto;
-import org.library.domain.BookWithTitleCopies;
+import org.library.domain.BookDto;
 import org.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +31,5 @@ public class BookController {
     public void saveBook(@RequestBody BookDto bookDto) {
         bookService.saveBook(bookDto);
     }
-
 
 }

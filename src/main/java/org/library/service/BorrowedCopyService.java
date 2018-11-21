@@ -1,9 +1,11 @@
 package org.library.service;
 
 import org.library.domain.*;
+import org.library.domain.BorrowedCopyDto;
 import org.library.exception.BookNotAvailableException;
 import org.library.exception.BorrowedCopyNotAvailableException;
 import org.library.exception.ReaderNotAvailableException;
+import org.library.mapper.BorrowedCopyMapper;
 import org.library.repository.BookCopiesDao;
 import org.library.repository.BookDao;
 import org.library.repository.BorrowedCopyDao;
@@ -26,11 +28,15 @@ public class BorrowedCopyService {
     BookDao bookDao;
     @Autowired
     ReaderDao readerDao;
+    @Autowired
+    BorrowedCopyMapper borrowedCopyMapper;
 
     Reader reader;
     Book book;
 
-    public void borrowCopy(Integer readerId, Integer bookId) {
+    public BorrowedCopyDto borrowCopy(Integer readerId, Integer bookId) {
+
+
         setBook(bookId);
         setReader(readerId);
 
@@ -43,10 +49,11 @@ public class BorrowedCopyService {
         firstAvailableCopy.setStatus(BorrowStatus.BORROWED);
         bookCopiesDao.save(firstAvailableCopy);
         BorrowedCopy borrowedCopy = new BorrowedCopy(new Date(), firstAvailableCopy, reader);
-        borrowedCopyDao.save(borrowedCopy);
+        return borrowedCopyMapper
+                .mapBorrowedCopyToBorrowedCopyDto(borrowedCopyDao.save(borrowedCopy));
     }
 
-    public void returnCopy(Integer readerId, Integer bookId) {
+    public BorrowedCopyDto returnCopy(Integer readerId, Integer bookId) {
         setBook(bookId);
         setReader(readerId);
 
@@ -60,14 +67,16 @@ public class BorrowedCopyService {
                 .filter(borrowed -> borrowed.getBorrowEnd() == null)
                 .findFirst().orElseThrow(BorrowedCopyNotAvailableException::new);
         borrowedCopy.setBorrowEnd(new Date());
-        borrowedCopyDao.save(borrowedCopy);
+        return borrowedCopyMapper
+                .mapBorrowedCopyToBorrowedCopyDto(borrowedCopyDao.save(borrowedCopy));
     }
 
-    private void setBook(Integer bookId){
+    private void setBook(Integer bookId) {
         book = Optional.ofNullable(bookDao.findById(bookId))
                 .orElseThrow(BookNotAvailableException::new);
     }
-    private void setReader(Integer readerId){
+
+    private void setReader(Integer readerId) {
         reader = Optional.ofNullable(readerDao.findById(readerId))
                 .orElseThrow(ReaderNotAvailableException::new);
     }

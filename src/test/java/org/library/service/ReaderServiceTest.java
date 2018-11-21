@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.library.domain.Reader;
-import org.library.domain.dto.ReaderDto;
+import org.library.domain.ReaderDto;
 import org.library.mapper.ReaderMapper;
 import org.library.repository.ReaderDao;
 import org.mockito.InjectMocks;
@@ -48,7 +48,7 @@ public class ReaderServiceTest {
         Assert.assertEquals(1,allReaders.size());
     }
 
-   /* @Test
+   @Test
     public void saveReader() {
         //Given
         Date date = new Date();
@@ -60,9 +60,9 @@ public class ReaderServiceTest {
         reader.setLastName("lastName");
         //When
         when(readerMapper.mapReaderDtoToReader(readerDto)).thenReturn(reader);
-        readerService.saveReader(readerDto);
+        when(readerService.saveReader(readerDto)).thenReturn(readerDto);
+        ReaderDto returningReaderDto = readerService.saveReader(readerDto);
         //Then
-        Assert.assertEquals(1,re);
-
-    }*/
+        Assert.assertEquals(1,returningReaderDto.getId());
+    }
 }
