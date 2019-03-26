@@ -22,4 +22,5 @@ public interface BorrowedCopyDao extends CrudRepository<BorrowedCopy,Integer> {
 
     List<BorrowedCopy> findByReaderAndBookCopies(Reader reader,BookCopies bookCopies);
 
+
 }
